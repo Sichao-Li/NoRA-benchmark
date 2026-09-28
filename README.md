@@ -5,7 +5,8 @@
 [Paper](https://arxiv.org/abs/2606.04806) |
 [Dataset](https://huggingface.co/datasets/MINTLABJHUANU/NoRA) |
 [Model guide](docs/models.md) |
-[Scoring guide](docs/evaluation.md)
+[Scoring guide](docs/evaluation.md) |
+[Website](https://sichao-li.github.io/NoRA-benchmark/)
 
 NoRA evaluates the actions a model proposes, the facts it observes, and the
 reasons connecting them. It includes 190 human-annotated examples
