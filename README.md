@@ -8,10 +8,10 @@
 [Scoring guide](docs/evaluation.md)
 
 NoRA evaluates the actions a model proposes, the facts it observes, and the
-reasons connecting them. It includes **190 human-reviewed test examples**
-(HumanGold) and **1,230 model-annotated training examples** (LLMSilver).
+reasons connecting them. It includes 190 human-annotated examples
+(HumanGold) and 1,230 model-annotated training examples (LLMSilver).
 
-Use this package to evaluate saved predictions or connect your own model.
+Use this package to evaluate your own model.
 
 ## Quick start
 
@@ -40,7 +40,7 @@ uv run --extra scorer nora evaluate \
   --predictions predictions.jsonl --output runs/my-model
 ```
 
-The package includes the **human-reviewed test references**. Only the pinned
+The package includes the human test references. Only the pinned
 semantic scorer needs downloading; once cached, add `--offline`. CPU scoring is
 supported. Use `--references path/to/reference.jsonl` for a different reference
 file and `--progress` for clip-level progress.
