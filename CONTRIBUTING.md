@@ -1,31 +1,17 @@
 # Contributing
 
-Install the test dependencies and run the checks:
+Report bugs or suggest improvements through
+[GitHub Issues](https://github.com/Sichao-Li/NoRA-benchmark/issues).
+Include the command, package version, and a small reproducible example.
+Remove API keys and private model responses from any shared logs.
+
+To test a code change:
 
 ```bash
 uv sync --locked --extra test
 make check
 ```
 
-Tests use synthetic or sanitized fixtures and must not make paid API calls.
-For a semantic-scoring check, install `uv sync --locked --extra scorer`.
-
-## Package layout
-
-- `src/nora/`: data/media loading, validation, inference, reconstruction, evaluation, and CLI.
-- `src/nora/_scoring/`: private scoring formulas and graph operations.
-- `src/nora/assets/`: synthetic demo, prediction prompts, and human-reviewed test annotations.
-- `tests/`: regression tests and fixtures.
-- `docs/`: model integration and scoring guides.
-
-Keep one implementation of each scoring rule. Changes to parsing or scoring
-need regression tests; changes to metric semantics need a new protocol version.
-Add model integrations through the callback interface before adding dependencies
-or another runner. The supported Python interface is `nora`; scoring internals
-are private. Export supported functions in `nora.__all__`, use descriptive verbs,
-and keep CLI options, function parameters, help text, and examples consistent.
-Preserve published metric and annotation-field names.
-
-Keep reference answers out of inference and reconstruction. Never commit
-credentials, media, checkpoints, or inference dumps. Use environment variables
-for credentials and synthetic examples in tests.
+Tests make no paid API calls. Include regression tests for changes to prediction
+parsing or scoring, and update the relevant usage examples when changing the CLI
+or Python interface.

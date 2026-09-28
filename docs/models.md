@@ -23,8 +23,8 @@ Facts, reasons, and actions are the default prediction format:
 
 IDs must be unique within each list, and references must point to existing IDs.
 Every action must have a `reasons_to_do` list; it can be empty. All actions count.
-Do not submit opposing-reason links or retrospective records. Reasons may also
-include `tier` and `justification`, and support links may include `explanation`.
+Reasons may also include `tier` and `justification`, and support links may include
+`explanation`.
 An optional `chosen_action_id` must point to an existing candidate action.
 
 ### Action graphs
@@ -101,7 +101,7 @@ use the same workflow names:
 `download_media` and `predict` accept reference dictionaries and use only their
 clip IDs. `validate`, `evaluate`, and `reconstruct` accept JSON/JSONL file paths;
 `compare` accepts evaluation output directories. `validate` checks structure and
-internal links; `evaluate` additionally checks membership in the reference set.
+fact-reason-action links; `evaluate` additionally checks membership in the reference set.
 Neither treats format validity as evidence that an answer is correct.
 
 Use `prediction_format` / `--prediction-format` for prediction files and
@@ -151,12 +151,26 @@ For a compatible Chat Completions endpoint:
 ```bash
 uv run nora predict --base-url http://localhost:8000/v1 --model YOUR_MODEL \
   --media frames --media-root data/media --prompt structured \
-  --limit 2 --output runs/raw.jsonl
+  --max-tokens 4096 --limit 2 --output runs/raw.jsonl
 ```
 
+The endpoint must already be running and support the selected visual modality.
+Replace the local URL with your provider's HTTPS endpoint for hosted inference.
 Set `NORA_API_KEY` if your endpoint requires authentication. Remote endpoints
 must use HTTPS; localhost HTTP is allowed. Only complete, nonempty text
 responses are accepted. Truncated responses are recorded as failures.
+
+The adapter sends temperature `0` and `max_tokens=4096` by default. Change the
+output limit with `--max-tokens`; timeout defaults to `180` seconds and is
+configurable through `ChatCompletionsModel(timeout=...)` in Python. Requests are
+sequential, with one response requested per clip. No seed, `top_p`, or native
+thinking setting is sent. Use a custom callback for other decoding parameters.
+
+Select `--prompt direct`, `deliberate`, or `structured`. The
+[bundled templates](../src/nora/assets/prediction_prompts.json) contain the exact
+system and user messages. `load_prompts()` returns those same dictionaries for
+Python integrations. Direct prompting asks for an action only; the other modes
+request facts and reasons as well. Save separate files for each setting.
 
 For native video input, choose `--media video` and a video-capable model and
 endpoint. The runner sends the local MP4 as a base64 `video_url` content part,

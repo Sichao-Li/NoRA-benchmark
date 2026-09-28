@@ -96,25 +96,31 @@ The default test reference is the bundled, human-reviewed annotation file:
 test split on [Hugging Face](https://huggingface.co/datasets/MINTLABJHUANU/NoRA)
 and loads without network access.
 
-The CLI training loader uses a separate pinned HF snapshot configured in
-`src/nora/data.py`, not the current HF training files. To load the current training
-split, use Hugging Face Datasets:
+The training loader retrieves the corresponding 1,230-clip training split from
+a pinned Hugging Face revision:
 
 ```python
-from datasets import load_dataset
+from nora import load_references
 
-train = load_dataset("MINTLABJHUANU/NoRA", split="train")
+train = load_references("train")
 ```
 
 The scorer uses `cross-encoder/stsb-roberta-base` at revision
 `d576534b67143e2c70ee9966d7fdbf5835728d13`.
 If the scorer cannot load, evaluation fails rather than using the demo backend.
 
-`nora-v2-support-graph` identifies the input and reporting protocol in `run.json`.
-The bundled `nora_v2_*` prompts request candidate actions and supporting reasons.
-The paper's `pred_v1_*` prompts, available with the HF dataset, allow a different
-response structure. Match prompts, candidate inclusion, and reconstruction
-settings when comparing or reproducing experiments.
+Record the model and checkpoint, exact prompt text, visual modality, decoding
+parameters, native thinking setting, and reconstruction model. The API runner
+defaults to temperature `0` and a `4096`-token output limit; these are runner
+defaults, not a claim that every paper experiment used those settings.
+
+The [bundled prompts](../src/nora/assets/prediction_prompts.json) and the
+[paper prompts distributed with the dataset](https://huggingface.co/datasets/MINTLABJHUANU/NoRA/blob/main/prompts/prediction_prompts.json)
+request different response structures and are not interchangeable for exact
+reproduction. Use the prompt recorded for the experiment you are reproducing.
+For model comparisons, keep prompts, candidate inclusion, reconstruction, and
+scoring settings fixed. `run.json` records the scoring protocol and available
+prediction metadata; it does not recover unreported provider settings.
 
 For the paper's saved action graphs, use `--prediction-format graph`.
 To reproduce a reported experiment, match its reference annotations, visual

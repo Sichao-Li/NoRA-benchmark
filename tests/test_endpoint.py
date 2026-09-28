@@ -45,6 +45,9 @@ def test_compatible_endpoint_roundtrip(tmp_path, monkeypatch, finish, media, fil
         path, body = received[0]
         assert path == "/v1/chat/completions"
         assert body["model"] == "custom"
+        assert body["temperature"] == 0 and body["max_tokens"] == 4096
+        assert not {"seed", "top_p", "reasoning_effort"} & body.keys()
+        assert model.timeout == 180
         content = body["messages"][1]["content"][1]
         assert content["type"] == part_type
         assert content[part_type]["url"].startswith(f"data:{mime};base64,")

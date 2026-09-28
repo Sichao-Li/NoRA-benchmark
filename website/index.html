@@ -115,7 +115,7 @@ uv run nora validate predictions.jsonl
 uv run --extra scorer nora evaluate \
   --predictions predictions.jsonl \
   --output runs/my-model</code></pre></div>
-      <div class="start-details"><p>Run from the NoRA checkout after setup. The package includes human-reviewed test references. Free-text responses require explicit API-key-based reconstruction before scoring.</p><a class="text-link" href="https://github.com/Sichao-Li/NoRA-benchmark/blob/main/docs/models.md">Model integration guide <span aria-hidden="true">&nearr;</span></a></div>
+      <div class="start-details"><p>Start with the provided visual inputs and prompts, generate model responses, then reconstruct and score them. The package includes human-reviewed test references.</p><a class="text-link" href="https://github.com/Sichao-Li/NoRA-benchmark#1-download-the-visual-inputs">Prediction-to-score walkthrough <span aria-hidden="true">&nearr;</span></a></div>
       <p class="figure-note">Validation and scoring do not make paid API calls. Inference and text reconstruction may incur provider fees.</p>
     </section>
 
