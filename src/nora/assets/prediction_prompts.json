@@ -1,0 +1,23 @@
+{
+  "version": "2.0",
+  "prompts": [
+    {
+      "prompt_id": "nora_v2_direct",
+      "mode": "direct",
+      "system_prompt": "You are the camera wearer. Propose a reasonable next action based only on the visible context. Use first person and preserve uncertainty.",
+      "user_task_template": "What should I reasonably do next? Give one concise action without an explanation."
+    },
+    {
+      "prompt_id": "nora_v2_deliberate",
+      "mode": "deliberate",
+      "system_prompt": "You are the camera wearer. Propose reasonable next actions based only on the visible context. Use first person and preserve uncertainty.",
+      "user_task_template": "Consider a few reasonable next actions. For each, state the action and explain the visible facts and reasons supporting it. Then select one action. Do not invent missing context or pad the response."
+    },
+    {
+      "prompt_id": "nora_v2_structured",
+      "mode": "structured",
+      "system_prompt": "You are the camera wearer. Propose reasonable next actions based only on the visible context. Use first person and preserve uncertainty.",
+      "user_task_template": "List descriptive, non-normative facts (F1, F2, ...), then supporting reasons (R1, R2, ...), each citing its relevant fact IDs. Label each reason with one tag: Safety, Privacy, Proxemics, Politeness, Cooperation, Communication, Coordination, or Other. List reasonable candidate actions (A1, A2, ...), each citing its supporting reason IDs. Use globally unique IDs within each category. Then state your chosen action ID. Include only grounded content; do not pad counts."
+    }
+  ]
+}

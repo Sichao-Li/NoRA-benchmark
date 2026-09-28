@@ -1,0 +1,117 @@
+{
+  "instance_id": "ex1",
+  "chosen_action_id": "g1",
+  "chosen_action_text": "Stop work and secure fall protection before continuing.",
+  "action_graphs": [
+    {
+      "action_id": "g1",
+      "action_text": "Stop work and secure fall protection before continuing.",
+      "facts": [
+        {
+          "id": "f1",
+          "text": "The staircase is unfinished and ends at an exposed drop-off."
+        },
+        {
+          "id": "f2",
+          "text": "No guardrails or other fall protection are visible."
+        },
+        {
+          "id": "f3",
+          "text": "A worker is close to the open edge while the task is underway."
+        }
+      ],
+      "reasons": [
+        {
+          "id": "r1",
+          "text": "There is a serious risk of someone falling.",
+          "normative_label": "care"
+        },
+        {
+          "id": "r2",
+          "text": "Continuing without protection would be unsafe.",
+          "normative_label": "duty"
+        }
+      ],
+      "edges": [
+        {
+          "src": "f1",
+          "dst": "r1",
+          "type": "supports"
+        },
+        {
+          "src": "f2",
+          "dst": "r1",
+          "type": "supports"
+        },
+        {
+          "src": "f3",
+          "dst": "r2",
+          "type": "supports"
+        },
+        {
+          "src": "r1",
+          "dst": "g1",
+          "type": "motivates"
+        },
+        {
+          "src": "r2",
+          "dst": "g1",
+          "type": "motivates"
+        }
+      ]
+    },
+    {
+      "action_id": "g2",
+      "action_text": "Block off the staircase area and notify the supervisor.",
+      "facts": [
+        {
+          "id": "f4",
+          "text": "Other workers could enter the hazardous staircase area."
+        },
+        {
+          "id": "f5",
+          "text": "The hazard has not been mitigated yet."
+        }
+      ],
+      "reasons": [
+        {
+          "id": "r3",
+          "text": "Preventing others from entering reduces the chance of injury.",
+          "normative_label": "care"
+        },
+        {
+          "id": "r4",
+          "text": "A supervisor should coordinate the corrective action.",
+          "normative_label": "authority"
+        }
+      ],
+      "edges": [
+        {
+          "src": "f4",
+          "dst": "r3",
+          "type": "supports"
+        },
+        {
+          "src": "f5",
+          "dst": "r3",
+          "type": "supports"
+        },
+        {
+          "src": "f5",
+          "dst": "r4",
+          "type": "supports"
+        },
+        {
+          "src": "r3",
+          "dst": "g2",
+          "type": "motivates"
+        },
+        {
+          "src": "r4",
+          "dst": "g2",
+          "type": "motivates"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the NoRA paper below."
+title: "NoRA benchmark evaluation software"
+type: software
+version: "0.4.0"
+repository-code: "https://github.com/Sichao-Li/NoRA-benchmark"
+license: MIT
+authors: &authors
+  - family-names: Li
+    given-names: Sichao
+  - family-names: Ma
+    given-names: Sai
+  - family-names: Kilov
+    given-names: Daniel
+  - family-names: Yanik Guyot
+    given-names: Secil
+  - family-names: Li
+    given-names: Zhuang
+  - family-names: Lazar
+    given-names: Seth
+preferred-citation:
+  type: article
+  title: "NoRA: Evaluating Grounded Reasonableness in Visual First-person Normative Action Reasoning"
+  authors: *authors
+  year: 2026
+  doi: "10.48550/arXiv.2606.04806"
+  url: "https://arxiv.org/abs/2606.04806"

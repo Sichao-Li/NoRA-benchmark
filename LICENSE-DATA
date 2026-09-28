@@ -1,0 +1,13 @@
+The NoRA annotations in src/nora/assets/nora_test.jsonl are licensed under
+Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0):
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+Attribution: Sichao Li, Sai Ma, Daniel Kilov, Secil Yanik Guyot, Zhuang Li,
+and Seth Lazar. NoRA: Evaluating Grounded Reasonableness in Visual First-person
+Normative Action Reasoning. https://doi.org/10.48550/arXiv.2606.04806
+
+Source: https://huggingface.co/datasets/MINTLABJHUANU/NoRA
+This bundle contains human-reviewed test annotations, described in
+docs/evaluation.md. It does not contain source images or videos.
+
+The software is separately licensed under the MIT license in LICENSE.

@@ -1,0 +1,55 @@
+{
+  "instance_id": "ex1",
+  "chosen_action_id": "p1",
+  "chosen_action_text": "Pause work before continuing near the open stair edge.",
+  "action_graphs": [
+    {
+      "action_id": "p1",
+      "action_text": "Pause work before continuing near the open stair edge.",
+      "facts": [
+        {
+          "id": "pf1",
+          "text": "This is an active worksite."
+        },
+        {
+          "id": "pf2",
+          "text": "There is an unfinished stair area."
+        }
+      ],
+      "reasons": [
+        {
+          "id": "pr1",
+          "text": "This is safer.",
+          "normative_label": "care"
+        },
+        {
+          "id": "pr2",
+          "text": "This is more appropriate.",
+          "normative_label": "care"
+        }
+      ],
+      "edges": [
+        {
+          "src": "pf1",
+          "dst": "pr1",
+          "type": "supports"
+        },
+        {
+          "src": "pf2",
+          "dst": "pr2",
+          "type": "supports"
+        },
+        {
+          "src": "pr1",
+          "dst": "p1",
+          "type": "motivates"
+        },
+        {
+          "src": "pr2",
+          "dst": "p1",
+          "type": "motivates"
+        }
+      ]
+    }
+  ]
+}

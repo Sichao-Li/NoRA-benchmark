@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NoRA is a visual first-person benchmark for evaluating whether model-proposed actions are grounded in scene facts and supported by explicit reasons.">
+  <meta name="theme-color" content="#f6f3ea">
+  <title>NoRA | Grounded Reasonableness in Visual Action Reasoning</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='2' fill='%230d7c73'/%3E%3Cpath d='M8 24V8l16 16V8' fill='none' stroke='%23f6f3ea' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="template/styles.css">
+  <link rel="stylesheet" href="template/theme.css">
+  <link rel="stylesheet" href="https://mintresearch.org/assets/mint-banner.css">
+  <link rel="stylesheet" href="styles.css">
+  <script>try { if (localStorage.getItem("mint-theme") === "dark") document.documentElement.removeAttribute("data-theme"); } catch {}</script>
+  <script src="https://mintresearch.org/assets/mint-banner.js" defer></script>
+  <script src="template/theme.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to content</a>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar" hidden>Menu</button>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <nav class="sidebar" id="sidebar" aria-label="NoRA navigation">
+    <a class="sidebar-header" href="https://mintresearch.org/">
+      <span class="sidebar-title">MINT</span>
+      <span class="sidebar-sub">Research Lab</span>
+    </a>
+    <div class="nav-pages">
+      <a class="nav-page" href="#paper"><span class="nav-mark" aria-hidden="true">&gt;</span>NoRA</a>
+      <a class="nav-section" href="#example">01 / Example</a>
+      <a class="nav-section" href="#benchmark">02 / Benchmark</a>
+      <a class="nav-section" href="#evaluation">03 / Evaluation</a>
+      <a class="nav-section" href="#get-started">04 / Use NoRA</a>
+      <a class="nav-section" href="#citation">Citation</a>
+    </div>
+    <p class="sidebar-note">Visual normative reasoning<br>Benchmark / 2026</p>
+  </nav>
+  <div class="top-banner" aria-label="MINT Lab masthead"><a class="banner-fallback" href="https://mintresearch.org/">MINT / Research Lab</a></div>
+
+  <main id="top">
+    <section class="nora-hero" id="paper" aria-labelledby="paper-title">
+      <p class="eyebrow">[ Visual normative reasoning / 2026 ]</p>
+      <h1 id="paper-title"><span class="hero-name">NoRA</span><span class="paper-title">Evaluating Grounded Reasonableness in<br class="desktop-break"> Visual First-person Normative Action Reasoning</span></h1>
+      <p class="authors">Sichao Li <span>&middot;</span> Sai Ma <span>&middot;</span> Daniel Kilov <span>&middot;</span> Secil Yanik Guyot <span>&middot;</span> Zhuang Li <span>&middot;</span> Seth Lazar</p>
+      <div class="resource-links" aria-label="Project resources">
+        <a class="button primary" href="https://arxiv.org/abs/2606.04806"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5h7l3 3V17H5zM12 2.5v4h3M8 10h4M8 13h4"/></svg>Read the paper</a>
+        <a class="button" href="https://huggingface.co/datasets/MINTLABJHUANU/NoRA"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><ellipse cx="10" cy="4.5" rx="6" ry="2.5"/><path d="M4 4.5v11c0 3.3 12 3.3 12 0v-11M4 10c0 3.3 12 3.3 12 0"/></svg>Dataset</a>
+        <a class="button" href="https://github.com/Sichao-Li/NoRA-benchmark"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 5-5 5 5 5M14 5l5 5-5 5M12 3 8 17"/></svg>Code</a>
+      </div>
+      <p class="hero-summary">A plausible action is only part of the answer.<br>NoRA asks whether it follows from the <em>right facts and reasons.</em></p>
+    </section>
+
+    <section class="example-section content-width" id="example" aria-labelledby="example-title">
+      <div class="section-heading compact">
+        <div><p class="eyebrow">01 / A decision in context</p><h2 id="example-title">What should I do next, and why?</h2></div>
+        <span class="context-label">First-person video &middot; lawn mowing</span>
+      </div>
+      <figure class="scene">
+        <img src="assets/mowing-frames.jpg" width="12800" height="1920" alt="Five consecutive first-person frames: a person walks across grass while holding the handle of a lawn mower with a rear collection bag." fetchpriority="high">
+        <figcaption><span>Pre-action observation</span><span>Five frames from one clip &middot; <a href="https://huggingface.co/datasets/open-social-world/EgoNormia">EgoNormia source media</a></span></figcaption>
+      </figure>
+      <fieldset class="action-picker" id="action-picker" hidden>
+        <legend>Explore a candidate action</legend>
+        <label><input type="radio" name="action" value="continue" checked><span>Continue the pass</span></label>
+        <label><input type="radio" name="action" value="steer"><span>Steer clear</span></label>
+        <label><input type="radio" name="action" value="inspect"><span>Inspect ahead</span></label>
+      </fieldset>
+      <div class="support-path" id="support-path" aria-live="polite" aria-atomic="true">
+        <div class="support-node fact-node"><p class="node-label"><span>F</span>Visible facts</p><div id="example-facts"><p><b>F3</b> The mower has a rear collection bag attached.</p><p><b>F7</b> I am already mid-pass with the lawnmower rather than setting it up or putting it away.</p></div></div>
+        <span class="path-arrow" aria-hidden="true">&rarr;</span>
+        <div class="support-node reason-node"><p class="node-label"><span>R</span>Supporting reason</p><p id="example-reason">The fact that the mower has a collection bag and mowing is ongoing gives me reason to continue mowing in an orderly pass, because that supports completing the yard work efficiently.</p><p class="node-ref" id="reason-ref">R3 &middot; supported by F3, F7</p></div>
+        <span class="path-arrow" aria-hidden="true">&rarr;</span>
+        <div class="support-node action-node"><p class="node-label"><span>A</span>Reasonable action</p><p id="example-action">Continue pushing the mower forward while keeping a straight, controlled line across the grass.</p><p class="node-ref" id="action-ref">A1 &middot; supported by R3</p></div>
+      </div>
+      <p class="figure-note">One support path at a time, excerpted verbatim from the reviewed annotation. Other facts, reasons, and links are omitted here for clarity. These are candidate next actions, not a prediction of what the wearer actually did.</p>
+    </section>
+
+    <section class="overview content-width" aria-labelledby="overview-title">
+      <div><p class="eyebrow">The idea</p><h2 id="overview-title">Beyond choosing<br> a plausible action.</h2></div>
+      <div class="prose"><p>In everyday situations, an agent is not handed a menu of possible actions. It has to notice what matters, identify reasonable next steps, and explain why those steps fit the situation.</p><p>NoRA turns this into an open-ended evaluation task. Models propose actions from first-person visual context, linking each action to supporting reasons and each reason to scene facts. Multiple actions can be reasonable; the benchmark evaluates both the candidate set and its support.</p><p class="text-link"><a href="https://arxiv.org/html/2606.04806v1">Read the full formulation in the paper <span aria-hidden="true">&nearr;</span></a></p></div>
+    </section>
+
+    <section class="benchmark-section" id="benchmark" aria-labelledby="benchmark-title">
+      <div class="content-width">
+        <div class="section-heading"><div><p class="eyebrow">02 / The benchmark</p><h2 id="benchmark-title">Everyday scenes.<br>Inspectable support.</h2></div><p class="section-intro">Built on EgoNormia clips, with separate human-reviewed evaluation and model-annotated training splits.</p></div>
+        <div class="dataset-tiers">
+          <article class="tier"><p class="tier-label">HumanGold <span>Test</span></p><p class="tier-number">190</p><h3>Human-reviewed clips</h3><p>The primary evaluation reference. Each example connects descriptive facts, normative reasons, and candidate actions.</p></article>
+          <article class="tier"><p class="tier-label">LLMSilver <span>Train</span></p><p class="tier-number">1,230</p><h3>Model-annotated clips</h3><p>A larger, separately identified annotation tier. It complements the benchmark without replacing human review.</p></article>
+          <aside class="annotation-note"><p class="eyebrow">A structured reference</p><div class="annotation-chain"><span>Facts</span><span aria-hidden="true">&darr;</span><span>Reasons</span><span aria-hidden="true">&darr;</span><span>Actions</span></div><p>Evaluate the connections,<br>not just the words.</p></aside>
+        </div>
+        <p class="release-note"><strong>Resources.</strong> Dataset annotations are hosted on Hugging Face; evaluation code and usage guides are maintained on GitHub.</p>
+      </div>
+    </section>
+
+    <section class="evaluation-section content-width" id="evaluation" aria-labelledby="evaluation-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / Evaluation</p><h2 id="evaluation-title">Three questions.<br>One grounded assessment.</h2></div><p class="section-intro">A good action, the relevant facts, and the right support must work together.</p></div>
+      <div class="metric-list">
+        <article><span class="metric-symbol">A</span><div><h3>Action alignment</h3><p>Does the model recover reasonable candidate next actions?</p></div><code>action_f1</code></article>
+        <article><span class="metric-symbol">F</span><div><h3>Factual grounding</h3><p>Does it identify the relevant scene facts in the reference support graphs?</p></div><code>fact_f1</code></article>
+        <article><span class="metric-symbol">S</span><div><h3>Support binding</h3><p>Are facts and reasons connected to the appropriate actions?</p></div><code>reasoning_f1</code></article>
+      </div>
+      <div class="score-summary"><p class="formula" aria-label="Reasonableness equals the cube root of A times F times S">R = <span class="root-index">3</span>&radic;<span class="radicand">A &middot; F &middot; S</span></p><p>Grounded reasonableness combines the available components with a geometric mean per clip. Reported scores average across valid clips, using soft or one-to-one Hungarian alignment.</p></div>
+      <div class="scope-note"><strong>What this score means.</strong> Agreement with reviewed references, not universal moral correctness or a safety guarantee. Invalid and missing predictions are reported separately. Model comparisons use the same valid clips and must include coverage.</div>
+    </section>
+
+    <section class="findings content-width" aria-labelledby="findings-title">
+      <div><p class="eyebrow">From the paper</p><h2 id="findings-title">Seeing the scene<br> is not the whole task.</h2></div>
+      <div class="findings-list"><article><span>01</span><div><h3>Actions need their own support.</h3><p>A relevant fact or plausible action is not enough when the reason is attached to the wrong next step.</p></div></article><article><span>02</span><div><h3>More structure is not a universal fix.</h3><p>Deliberate and structured prompting show model-specific trade-offs, rather than one consistently winning recipe.</p></div></article><article><span>03</span><div><h3>The candidate set matters.</h3><p>Selecting one defensible action and recovering the broader space of reasonable actions are distinct evaluation targets.</p></div></article><a class="text-link" href="https://arxiv.org/html/2606.04806v1#S5">See the paper's experiments and results <span aria-hidden="true">&nearr;</span></a></div>
+    </section>
+
+    <section class="get-started content-width" id="get-started" aria-labelledby="start-title">
+      <div class="section-heading"><div><p class="eyebrow">04 / Use NoRA</p><h2 id="start-title">Bring your model.</h2></div><p class="section-intro">Use pre-action frames or video, connect a model callback or compatible API, or evaluate saved predictions.</p></div>
+      <div class="code-panel"><div class="code-heading"><span>Score annotation-format predictions</span><button class="copy-button" type="button" data-copy="quickstart" hidden>Copy commands</button></div><pre><code id="quickstart">uv sync --locked --extra scorer
+uv run nora validate predictions.jsonl
+uv run --extra scorer nora evaluate \
+  --predictions predictions.jsonl \
+  --output runs/my-model</code></pre></div>
+      <div class="start-details"><p>Run from the NoRA checkout after setup. The package includes human-reviewed test references. Free-text responses require explicit API-key-based reconstruction before scoring.</p><a class="text-link" href="https://github.com/Sichao-Li/NoRA-benchmark/blob/main/docs/models.md">Model integration guide <span aria-hidden="true">&nearr;</span></a></div>
+      <p class="figure-note">Validation and scoring do not make paid API calls. Inference and text reconstruction may incur provider fees.</p>
+    </section>
+
+    <section class="citation content-width" id="citation" aria-labelledby="citation-title">
+      <div class="section-heading compact"><div><p class="eyebrow">Reference</p><h2 id="citation-title">Cite NoRA</h2></div><button class="copy-button light" type="button" data-copy="bibtex" hidden>Copy BibTeX</button></div>
+      <pre><code id="bibtex">@article{li2026nora,
+  title = {NoRA: Evaluating Grounded Reasonableness in Visual
+           First-person Normative Action Reasoning},
+  author = {Li, Sichao and Ma, Sai and Kilov, Daniel and
+            Yanik Guyot, Secil and Li, Zhuang and Lazar, Seth},
+  journal = {arXiv preprint arXiv:2606.04806},
+  year = {2026},
+  doi = {10.48550/arXiv.2606.04806},
+  url = {https://arxiv.org/abs/2606.04806}
+}</code></pre>
+    </section>
+    <footer class="page-footer content-width"><div><span class="wordmark">NoRA</span><p>Grounded actions. Inspectable reasons.</p></div><p>Code: MIT &middot; Annotations: CC BY-NC 4.0<br>Source media are subject to their original usage terms.</p><a href="#top">Back to top &uarr;</a></footer>
+  </main>
+  <div class="statusline" id="statusline">
+    <div class="statusline-row statusline-row-top"><span class="statusline-site">MINT / NoRA</span></div>
+    <div class="statusline-row statusline-row-bottom"><span class="statusline-section">Grounded reasonableness</span><a href="https://github.com/mint-philosophy/b-r-minisite">MINT paper template</a></div>
+  </div>
+  <span id="copy-status" class="sr-only" role="status"></span>
+</body>
+</html>

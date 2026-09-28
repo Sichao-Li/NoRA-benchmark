@@ -1,0 +1,14 @@
+__pycache__/
+.pytest_cache/
+.reason_eval_llm_cache.jsonl
+.reason_eval_embedding_cache/
+.venv/
+.DS_Store
+*.egg-info/
+build/
+dist/
+runs/
+.env
+*.env
+data/
+.internal/

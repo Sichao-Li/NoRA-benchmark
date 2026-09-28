@@ -1,0 +1,149 @@
+{
+  "clip_id": "demo_humangold_counter",
+  "facts": [
+    {
+      "fact_id": "F1",
+      "text": "I am at a snack-counter style workspace with packaged items and a basket nearby."
+    },
+    {
+      "fact_id": "F2",
+      "text": "Another person across the counter is handling items and a paper bag."
+    },
+    {
+      "fact_id": "F3",
+      "text": "A red basket in front of me holds several packaged snacks."
+    },
+    {
+      "fact_id": "F4",
+      "text": "I am holding or presenting a packaged snack item near the basket."
+    },
+    {
+      "fact_id": "F5",
+      "text": "A small device sits on the counter between us."
+    },
+    {
+      "fact_id": "F6",
+      "text": "The exchange is happening at close range across a narrow counter."
+    }
+  ],
+  "reasons": [
+    {
+      "reason_id": "R1",
+      "text": "Because the other person is already handling items, I have reason to present the snack clearly and coordinate the handoff.",
+      "facts": [
+        "F2",
+        "F4",
+        "F6"
+      ],
+      "tags": [
+        "Coordination",
+        "Communication",
+        "Cooperation"
+      ],
+      "tier": "A",
+      "justification": "Clear coordination keeps the exchange legible and avoids confusion."
+    },
+    {
+      "reason_id": "R2",
+      "text": "The tight spacing gives me reason to move carefully so I do not bump the basket, the device, or the other person.",
+      "facts": [
+        "F3",
+        "F5",
+        "F6"
+      ],
+      "tags": [
+        "Safety",
+        "Proxemics"
+      ],
+      "tier": "A",
+      "justification": "Abrupt movements could knock items or interfere with the exchange."
+    },
+    {
+      "reason_id": "R3",
+      "text": "The basket of packaged snacks gives me reason to keep the items stable and avoid scattering them.",
+      "facts": [
+        "F3",
+        "F4"
+      ],
+      "tags": [
+        "Safety",
+        "Coordination"
+      ],
+      "tier": "A",
+      "justification": "Loose items can shift or fall if I move carelessly."
+    },
+    {
+      "reason_id": "R4",
+      "text": "If I am unsure which item should move next, I have reason to wait briefly or ask a short clarifying question.",
+      "facts": [
+        "F2",
+        "F4"
+      ],
+      "tags": [
+        "Attention",
+        "Communication"
+      ],
+      "tier": "B",
+      "justification": "A short clarification is better than guessing the next step."
+    },
+    {
+      "reason_id": "R5",
+      "text": "The counter and device mark a visible workspace boundary, so I should not reach unpredictably into the other side.",
+      "facts": [
+        "F1",
+        "F5",
+        "F6"
+      ],
+      "tags": [
+        "Respect for roles",
+        "Safety"
+      ],
+      "tier": "B",
+      "justification": "Respecting the boundary reduces accidental interference."
+    }
+  ],
+  "actions": [
+    {
+      "action_id": "A1",
+      "description": "Hold or hand the snack forward only when the other person is ready to receive it.",
+      "reasons_to_do": [
+        {
+          "reason_id": "R1",
+          "explanation": "A clear handoff keeps the exchange easy to follow."
+        },
+        {
+          "reason_id": "R2",
+          "explanation": "Careful movement avoids bumping hands or objects."
+        }
+      ]
+    },
+    {
+      "action_id": "A2",
+      "description": "Wait briefly while the current item or bag is being handled before moving the next snack.",
+      "reasons_to_do": [
+        {
+          "reason_id": "R1",
+          "explanation": "Letting one handling step finish keeps the interaction orderly."
+        },
+        {
+          "reason_id": "R4",
+          "explanation": "The next step may still be uncertain."
+        }
+      ]
+    },
+    {
+      "action_id": "A3",
+      "description": "Ask a short clarifying question if I am unsure which item should be handed over next.",
+      "reasons_to_do": [
+        {
+          "reason_id": "R4",
+          "explanation": "A brief question resolves uncertainty without overcommitting."
+        },
+        {
+          "reason_id": "R1",
+          "explanation": "It helps both people coordinate the exchange."
+        }
+      ]
+    }
+  ]
+}

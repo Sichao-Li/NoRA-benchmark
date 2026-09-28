@@ -1,0 +1,150 @@
+{
+  "clip_id": "demo_humangold_rooftop",
+  "facts": [
+    {
+      "fact_id": "F1",
+      "text": "I am standing on a flat rooftop of a partially built brick structure with an exposed edge."
+    },
+    {
+      "fact_id": "F2",
+      "text": "Bamboo poles tied with rope are set up near the roof edge."
+    },
+    {
+      "fact_id": "F3",
+      "text": "I am handling a long bamboo pole while a coworker in front of me also guides it."
+    },
+    {
+      "fact_id": "F4",
+      "text": "Loose construction materials and uneven dusty patches create clutter underfoot."
+    },
+    {
+      "fact_id": "F5",
+      "text": "A ladder is leaning against the structure near the work area."
+    },
+    {
+      "fact_id": "F6",
+      "text": "Several coworkers are nearby on the roof."
+    }
+  ],
+  "reasons": [
+    {
+      "reason_id": "R1",
+      "text": "Working close to the roof edge gives me reason to watch my footing and avoid backing up blindly.",
+      "facts": [
+        "F1"
+      ],
+      "tags": [
+        "Safety"
+      ],
+      "tier": "A",
+      "justification": "A misstep near the edge could lead to a dangerous fall."
+    },
+    {
+      "reason_id": "R2",
+      "text": "Handling a long pole with a coworker gives me reason to coordinate clearly before lifting or rotating it.",
+      "facts": [
+        "F3",
+        "F6"
+      ],
+      "tags": [
+        "Coordination",
+        "Communication",
+        "Safety"
+      ],
+      "tier": "A",
+      "justification": "Uncoordinated movement could strike someone or throw off our balance."
+    },
+    {
+      "reason_id": "R3",
+      "text": "Scattered materials and uneven footing give me reason to step carefully or clear a small path first.",
+      "facts": [
+        "F4"
+      ],
+      "tags": [
+        "Safety"
+      ],
+      "tier": "A",
+      "justification": "Trip and slip hazards are immediate when carrying a long object."
+    },
+    {
+      "reason_id": "R4",
+      "text": "The nearby scaffold and pole positioning give me reason to secure the pole once it is placed.",
+      "facts": [
+        "F2",
+        "F3"
+      ],
+      "tags": [
+        "Safety",
+        "Coordination"
+      ],
+      "tier": "B",
+      "justification": "Preventing the pole from shifting protects nearby people."
+    },
+    {
+      "reason_id": "R5",
+      "text": "The nearby ladder gives me reason to keep the pole clear of it while moving.",
+      "facts": [
+        "F5",
+        "F3"
+      ],
+      "tags": [
+        "Safety",
+        "Coordination"
+      ],
+      "tier": "B",
+      "justification": "Contact with the ladder could dislodge it or endanger someone nearby."
+    }
+  ],
+  "actions": [
+    {
+      "action_id": "A1",
+      "description": "Coordinate with the coworker to move the bamboo pole slowly into position using clear cues.",
+      "reasons_to_do": [
+        {
+          "reason_id": "R2",
+          "explanation": "Shared handling requires synchronized movement."
+        },
+        {
+          "reason_id": "R1",
+          "explanation": "Controlled movement helps preserve footing near the edge."
+        },
+        {
+          "reason_id": "R3",
+          "explanation": "Deliberate movement reduces tripping risk."
+        },
+        {
+          "reason_id": "R5",
+          "explanation": "Awareness helps keep the pole clear of the ladder."
+        }
+      ]
+    },
+    {
+      "action_id": "A2",
+      "description": "Step to a clearer, more stable spot before shifting the pole further.",
+      "reasons_to_do": [
+        {
+          "reason_id": "R3",
+          "explanation": "Reducing trip hazards lowers the risk of falling."
+        },
+        {
+          "reason_id": "R1",
+          "explanation": "Stable footing matters near the roof edge."
+        }
+      ]
+    },
+    {
+      "action_id": "A3",
+      "description": "After placement, tie the pole securely to the scaffold and confirm stability with the coworker.",
+      "reasons_to_do": [
+        {
+          "reason_id": "R4",
+          "explanation": "Securing the pole prevents it from shifting or falling."
+        },
+        {
+          "reason_id": "R2",
+          "explanation": "Coordination during tie-off ensures the pole stays supported."
+        }
+      ]
+    }
+  ]
+}
