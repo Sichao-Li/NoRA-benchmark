@@ -1,12 +1,14 @@
-# NoRA
+# NoRA: Evaluating Grounded Reasonableness in Visual First-person Normative Action Reasoning
 
-**Evaluating Grounded Reasonableness in Visual First-person Normative Action Reasoning**
+Sichao Li, Sai Ma, Daniel Kilov, Secil Yanik Guyot, Zhuang Li, Seth Lazar*
 
+[Website](https://sichao-li.github.io/NoRA-benchmark/) |
 [Paper](https://arxiv.org/abs/2606.04806) |
 [Dataset](https://huggingface.co/datasets/MINTLABJHUANU/NoRA) |
 [Model guide](docs/models.md) |
-[Scoring guide](docs/evaluation.md) |
-[Website](https://sichao-li.github.io/NoRA-benchmark/)
+[Scoring guide](docs/evaluation.md) | 
+[MINT Lab](https://mintresearch.org/)
+
 
 NoRA evaluates the actions a model proposes, the facts it observes, and the
 reasons connecting them. It includes 190 human-annotated examples
@@ -156,5 +158,5 @@ Please cite the [NoRA paper](https://arxiv.org/abs/2606.04806);
 citation metadata is in [CITATION.cff](CITATION.cff).
 
 Code is licensed under [MIT](LICENSE). Dataset annotations are
-[CC BY-NC 4.0](LICENSE-DATA).
-Source images and videos have separate access and usage terms.
+[CC BY-NC 4.0](LICENSE-DATA). Source images and videos have separate access and usage terms.
+
