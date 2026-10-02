@@ -91,13 +91,10 @@ can occur across devices and batch sizes.
 
 ## Reproducibility
 
-The default test reference is the bundled, human-reviewed annotation file:
-190 clips, 1,324 facts, 1,007 reasons, and 635 candidate actions. It matches the
-test split on [Hugging Face](https://huggingface.co/datasets/MINTLABJHUANU/NoRA)
+The default test reference is the test split on [Hugging Face](https://huggingface.co/datasets/MINTLABJHUANU/NoRA)
 and loads without network access.
 
-The training loader retrieves the corresponding 1,230-clip training split from
-a pinned Hugging Face revision:
+The training loader retrieves the corresponding 1,230-clip training split from:
 
 ```python
 from nora import load_references
@@ -127,14 +124,7 @@ To reproduce a reported experiment, match its reference annotations, visual
 inputs, prompts, predictions, reconstruction, and inclusion policy.
 Direct graph generation and text reconstruction are different procedures.
 
-Model and prompt labels in submitted files are user-provided metadata.
-Matching labels alone do not prove identical inference settings.
-
 ## Dataset limitations
-
-The split contains 1,230 training and 190 test clips, with no shared clip IDs.
-There are 87 shared UUID prefixes before the timestamp suffixes, so do not assume
-that training and test clips come from disjoint source videos.
 
 The annotations are finite reference sets. Appropriate actions can depend on
 unseen context, and agreement with an annotation is not a deployment safety
